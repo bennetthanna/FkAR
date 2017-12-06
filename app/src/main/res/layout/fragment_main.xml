@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/left_button"
             android:src="@drawable/left_arrow"
+            android:contentDescription="@string/left_button_description"
             />
 
         <Button
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/right_button"
             android:src="@drawable/right_arrow"
+            android:contentDescription="@string/right_button_description"
             />
     </LinearLayout>
 

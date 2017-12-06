@@ -8,4 +8,6 @@
     </string>
     <string name="speed_label">Speed</string>
     <string name="speed_format">%1$d</string>
+    <string name="left_button_description">Move object left</string>
+    <string name="right_button_description">Move object right</string>
 </resources>
