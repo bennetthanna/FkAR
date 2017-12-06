@@ -6,8 +6,12 @@ package com.hannabennett.fkar;
 
 public class Object {
     private int mXCoordinate;
-    private int mYCoordinate;
     private int mSpeed;
+
+    public Object() {
+        mXCoordinate = 200;
+        mSpeed = 5;
+    }
 
     public int getXCoordinate() {
         return mXCoordinate;
@@ -17,13 +21,6 @@ public class Object {
         mXCoordinate = xCoordinate;
     }
 
-    public int getYCoordinate() {
-        return mYCoordinate;
-    }
-
-    public void setYCoordinate(int yCoordinate) {
-        mYCoordinate = yCoordinate;
-    }
 
     public int getSpeed() {
         return mSpeed;

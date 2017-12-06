@@ -3,4 +3,7 @@
     <string name="report_button_label">Report!</string>
     <string name="fkit_button_label">FkIt</string>
     <string name="settings_button_label">Settings</string>
+    <string name="report_format">
+        Horizontal Position: %1$d\nSpeed: %2$d
+    </string>
 </resources>
