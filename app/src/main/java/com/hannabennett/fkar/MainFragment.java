@@ -1,12 +1,16 @@
 package com.hannabennett.fkar;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -15,14 +19,18 @@ import android.widget.Toast;
 
 public class MainFragment extends Fragment {
     private Object mObject;
-    private Button mLeftButton;
-    private Button mRightButton;
+    private ImageButton mLeftButton;
+    private ImageButton mRightButton;
     private Button mReportButton;
     private Button mFkitButton;
     private Button mSettingsButton;
 
+    private static final int REQUEST_SPEED = 0;
+    private static final String TAG = "main fragment";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "on create view");
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mObject = new Object();
@@ -59,6 +67,10 @@ public class MainFragment extends Fragment {
         mSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                SettingsFragment fragment = SettingsFragment.newInstance(mObject.getSpeed(), mObject.getXCoordinate());
+                fragment.setTargetFragment(MainFragment.this, REQUEST_SPEED);
+
                 Intent intent = SettingsActivity.newIntent(getActivity(), mObject.getSpeed(), mObject.getXCoordinate());
                 startActivity(intent);
             }
@@ -74,6 +86,17 @@ public class MainFragment extends Fragment {
             mObject.setXCoordinate(currentX + (speed * 10));
         } else {
             mObject.setXCoordinate(currentX - (speed * 10));
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "on activity result");
+        if (requestCode == REQUEST_SPEED) {
+            Log.i(TAG, "on activity result");
+            int speed = (int) data.getSerializableExtra(SettingsFragment.EXTRA_SPEED);
+            Log.i(TAG, "speed " + speed);
+            mObject.setSpeed(speed);
         }
     }
 }

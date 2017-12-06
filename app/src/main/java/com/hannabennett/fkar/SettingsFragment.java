@@ -1,9 +1,11 @@
 package com.hannabennett.fkar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,9 @@ public class SettingsFragment extends Fragment {
 
     private static final String ARG_SPEED = "speed";
     private static final String ARG_X_COORDINATE = "xCoordinate";
+    public static final String EXTRA_SPEED = "com.hannabennett.fkar.speed";
+
+    private static final String TAG = "settingsfragment";
 
     public static SettingsFragment newInstance(int objectSpeed, int objectXCoordinate) {
         Bundle args = new Bundle();
@@ -40,6 +45,14 @@ public class SettingsFragment extends Fragment {
         int objectSpeed = (int) getArguments().getSerializable(ARG_SPEED);
         int objectXCoordinate = (int) getArguments().getSerializable(ARG_X_COORDINATE);
         mObject = new Object(objectSpeed, objectXCoordinate);
+    }
+
+    @Override
+    public void onDetach() {
+        Log.i(TAG, "on detach");
+        super.onDetach();
+        Log.i(TAG, "speed " + mObject.getSpeed());
+        sendResult(Activity.RESULT_OK, mObject.getSpeed());
     }
 
     @Override
@@ -70,5 +83,17 @@ public class SettingsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void sendResult(int resultCode, int objectSpeed) {
+        if (getTargetFragment() == null) {
+            Log.i(TAG, "get target fragment null");
+            return;
+        }
+
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_SPEED, objectSpeed);
+
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 }
