@@ -27,8 +27,20 @@ public class MainFragment extends Fragment {
         mObject = new Object();
 
         mLeftButton = view.findViewById(R.id.left_button);
+        mLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveObject(-1);
+            }
+        });
 
         mRightButton = view.findViewById(R.id.right_button);
+        mRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveObject(1);
+            }
+        });
 
         mReportButton = view.findViewById(R.id.report_button);
         mReportButton.setOnClickListener(new View.OnClickListener() {
@@ -45,5 +57,15 @@ public class MainFragment extends Fragment {
         mSettingsButton = view.findViewById(R.id.settings_button);
 
         return view;
+    }
+
+    private void moveObject(int direction) {
+        int speed = mObject.getSpeed();
+        int currentX = mObject.getXCoordinate();
+        if (direction == 1) {
+            mObject.setXCoordinate(currentX + (speed * 10));
+        } else {
+            mObject.setXCoordinate(currentX - (speed * 10));
+        }
     }
 }
