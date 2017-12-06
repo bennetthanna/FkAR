@@ -1,5 +1,6 @@
 package com.hannabennett.fkar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -55,6 +56,13 @@ public class MainFragment extends Fragment {
         mFkitButton = view.findViewById(R.id.fkit_button);
 
         mSettingsButton = view.findViewById(R.id.settings_button);
+        mSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = SettingsActivity.newIntent(getActivity(), mObject.getSpeed(), mObject.getXCoordinate());
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

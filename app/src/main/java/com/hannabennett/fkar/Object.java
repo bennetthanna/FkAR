@@ -13,6 +13,11 @@ public class Object {
         mSpeed = 5;
     }
 
+    public Object(int speed, int xCoordinate) {
+        mSpeed = speed;
+        mXCoordinate = xCoordinate;
+    }
+
     public int getXCoordinate() {
         return mXCoordinate;
     }

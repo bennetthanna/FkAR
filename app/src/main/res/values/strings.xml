@@ -7,5 +7,5 @@
         Horizontal Position: %1$d\nSpeed: %2$d
     </string>
     <string name="speed_label">Speed</string>
-    <string name="speed">%1%d</string>
+    <string name="speed_format">%1$d</string>
 </resources>
