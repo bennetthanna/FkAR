@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/speed_text"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textSize="70dp"/>
 
     <android.support.v7.widget.AppCompatSeekBar
         android:layout_width="match_parent"

@@ -47,15 +47,15 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         mSpeedText = view.findViewById(R.id.speed_text);
-//         get object from bundle
-//         mSpeed.setText(getString(R.string.speed_format, object.getSpeed()));
+        mSpeedText.setText(getString(R.string.speed_format, mObject.getSpeed()));
 
         mSpeedSeekBar = view.findViewById(R.id.speed_seek_bar);
-//        mSpeedSeekBar.setProgress(object.getSpeed());
+        mSpeedSeekBar.setProgress(mObject.getSpeed());
         mSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-//                object.setSpeed(i);
+                mObject.setSpeed(i);
+                mSpeedText.setText(getString(R.string.speed_format, i));
             }
 
             @Override
