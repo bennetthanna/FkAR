@@ -9,17 +9,17 @@ import static org.junit.Assert.*;
 /**
  * Created by HannaBennett on 12/6/17.
  */
-public class ObjectTest {
-    private Object mObject;
+public class ARObjectTest {
+    private ARObject mARObject;
 
     @Before
     public void setUp() throws Exception {
-        mObject = new Object();
+        mARObject = new ARObject();
     }
 
     @Test
     public void overrideConstructorToSetSpeedAndCoordinate() {
-        Object test = new Object(100, 500);
+        ARObject test = new ARObject(100, 500);
         assertThat(test.getSpeed(), is(100));
         assertThat(test.getXCoordinate(), is(500));
     }

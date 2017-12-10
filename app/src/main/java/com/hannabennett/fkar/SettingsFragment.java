@@ -1,7 +1,6 @@
 package com.hannabennett.fkar;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.UUID;
-
 /**
  * Created by HannaBennett on 12/6/17.
  */
@@ -21,7 +18,7 @@ import java.util.UUID;
 public class SettingsFragment extends Fragment {
     private TextView mSpeedText;
     private SeekBar mSpeedSeekBar;
-    private Object mObject;
+    private ARObject mARObject;
 
     private static final String ARG_SPEED = "speed";
     private static final String ARG_X_COORDINATE = "xCoordinate";
@@ -44,15 +41,15 @@ public class SettingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         int objectSpeed = (int) getArguments().getSerializable(ARG_SPEED);
         int objectXCoordinate = (int) getArguments().getSerializable(ARG_X_COORDINATE);
-        mObject = new Object(objectSpeed, objectXCoordinate);
+        mARObject = new ARObject(objectSpeed, objectXCoordinate);
     }
 
     @Override
     public void onDetach() {
         Log.i(TAG, "on detach");
         super.onDetach();
-        Log.i(TAG, "speed " + mObject.getSpeed());
-        sendResult(Activity.RESULT_OK, mObject.getSpeed());
+        Log.i(TAG, "speed " + mARObject.getSpeed());
+        sendResult(Activity.RESULT_OK, mARObject.getSpeed());
     }
 
     @Override
@@ -60,14 +57,14 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         mSpeedText = view.findViewById(R.id.speed_text);
-        mSpeedText.setText(getString(R.string.speed_format, mObject.getSpeed()));
+        mSpeedText.setText(getString(R.string.speed_format, mARObject.getSpeed()));
 
         mSpeedSeekBar = view.findViewById(R.id.speed_seek_bar);
-        mSpeedSeekBar.setProgress(mObject.getSpeed());
+        mSpeedSeekBar.setProgress(mARObject.getSpeed());
         mSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                mObject.setSpeed(i);
+                mARObject.setSpeed(i);
                 mSpeedText.setText(getString(R.string.speed_format, i));
             }
 

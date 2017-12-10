@@ -4,16 +4,16 @@ package com.hannabennett.fkar;
  * Created by HannaBennett on 12/6/17.
  */
 
-public class Object {
+public class ARObject {
     private int mXCoordinate;
     private int mSpeed;
 
-    public Object() {
+    public ARObject() {
         mXCoordinate = 200;
         mSpeed = 5;
     }
 
-    public Object(int speed, int xCoordinate) {
+    public ARObject(int speed, int xCoordinate) {
         mSpeed = speed;
         mXCoordinate = xCoordinate;
     }
