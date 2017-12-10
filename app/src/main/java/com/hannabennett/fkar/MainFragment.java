@@ -39,7 +39,7 @@ public class MainFragment extends Fragment {
         mLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveObject(-1);
+                mObject.moveLeft();
             }
         });
 
@@ -47,7 +47,7 @@ public class MainFragment extends Fragment {
         mRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveObject(1);
+                mObject.moveRight();
             }
         });
 
@@ -73,20 +73,11 @@ public class MainFragment extends Fragment {
 
                 Intent intent = SettingsActivity.newIntent(getActivity(), mObject.getSpeed(), mObject.getXCoordinate());
                 startActivity(intent);
+                // startActivityForResult(intent, REQUEST_SPEED);
             }
         });
 
         return view;
-    }
-
-    private void moveObject(int direction) {
-        int speed = mObject.getSpeed();
-        int currentX = mObject.getXCoordinate();
-        if (direction == 1) {
-            mObject.setXCoordinate(currentX + (speed * 10));
-        } else {
-            mObject.setXCoordinate(currentX - (speed * 10));
-        }
     }
 
     @Override

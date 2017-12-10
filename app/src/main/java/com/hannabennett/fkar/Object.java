@@ -35,4 +35,11 @@ public class Object {
         mSpeed = speed;
     }
 
+    public void moveRight() {
+        setXCoordinate(mXCoordinate + (mSpeed * 10));
+    }
+
+    public void moveLeft() {
+        setXCoordinate(mXCoordinate - (mSpeed * 10));
+    }
 }
